@@ -7,3 +7,18 @@ before_install:
 
 script:
   - docker run -e CI=true ryanthomas30/react-production-pipeline npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: react-production-pipeline
+  env: ReactProductionPipeline-env
+  bucket_name: elasticbeanstalk-us-east-2-468085008626'
+  bucket_path: react-production-pipeline
+  on:
+    branch: master
+
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
