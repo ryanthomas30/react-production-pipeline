@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t ryanthomas30/react-production-pipeline -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true ryanthomas30/react-production-pipeline npm run test
